@@ -16,7 +16,7 @@
     </script>
 
     <meta name="description" content="BILIMAL.ORG - Мектеп предметтери, физика, астрофизика жана бала бакча үчүн санариптик билим берүү порталы. Инновациялык сабактар, тесттер жана интерактивдүү оюндар.">
-    <meta name="keywords" content="билим ал, bilimal, физика, окутуу, кыргызча тесттер, мектеп предметтери, Азиспек уулу Мирзат, астрофизика кыргызча, бала бакча материалдары">
+    <meta name="keywords" content="билим ал, bilimal, физика, кыз куумай оюну, окутуу, кыргызча тесттер, мектеп предметтери, Азиспек уулу Мирзат, астрофизика кыргызча, бала бакча материалдары">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -37,6 +37,7 @@
         </a>
         
         <div class="hidden md:flex items-center space-x-8 font-bold text-sm uppercase tracking-widest">
+            <a href="#kyz-kuumay-section" class="hover:text-amber-400 transition">Кыз Куумай</a>
             <a href="#sections" class="hover:text-blue-400 transition">Бөлүмдөр</a>
             <a href="#school-subjects" class="hover:text-blue-400 transition">Предметтер</a>
             <a href="#kindergarten" class="hover:text-blue-400 transition">Бала бакча</a>
@@ -61,6 +62,32 @@
              data-full-width-responsive="true"></ins>
         <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
     </div>
+
+    <section id="kyz-kuumay-section" class="max-w-7xl mx-auto px-6 my-16">
+        <div class="relative rounded-[2.5rem] p-8 md:p-12 overflow-hidden border border-amber-500/30 bg-gradient-to-br from-[#1e1b4b]/90 via-[#111827]/90 to-[#0f172a]/90 shadow-2xl shadow-amber-950/20">
+            <div class="absolute -right-10 -top-10 w-72 h-72 bg-amber-500/10 blur-[100px] rounded-full"></div>
+            <div class="absolute -left-10 -bottom-10 w-72 h-72 bg-purple-500/10 blur-[100px] rounded-full"></div>
+            
+            <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+                <div class="max-w-2xl text-center lg:text-left">
+                    <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full inline-flex items-center gap-2 mb-4 animate-pulse">
+                        <i class="fas fa-horse"></i> Улуттук интерактивдүү оюн
+                    </span>
+                    <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+                        Бардык предметтерге <br><span class="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-400">КЫЗ КУУМАЙ ОЮНУ</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+                        Сүйүктүү предметиңизди жана темаңызды тандаңыз! Суроолорго туура жооп берип, улуттук Кыз Куумай оюнунда жеңишке жетиңиз. Билим алуу эми кызыктуу жана заманбап форматта!
+                    </p>
+                </div>
+                <div class="shrink-0 w-full lg:w-auto">
+                    <button onclick="startKyzKuumaySelection()" class="w-full lg:w-auto block text-center bg-gradient-to-r from-amber-500 to-orange-500 text-black px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:from-amber-400 hover:to-orange-400 transition-all shadow-xl shadow-amber-500/10 transform hover:-translate-y-1">
+                        Оюнду баштоо <i class="fas fa-play ml-2 text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="max-w-xl mx-auto my-12 px-4">
         <div class="flex items-center justify-between mb-4 px-2">
@@ -215,38 +242,6 @@
                     <div class="text-3xl text-blue-500 mb-3"><i class="fas fa-laptop-code"></i></div>
                     <span class="text-xs font-bold text-white uppercase tracking-wider">Информатика</span>
                 </div>
-                <div onclick="openSubjectModal('Астрономия')" class="glass-card p-6 rounded-2xl cursor-pointer flex flex-col items-center justify-center text-center py-8">
-                    <div class="text-3xl text-yellow-400 mb-3"><i class="fas fa-user-astronaut"></i></div>
-                    <span class="text-xs font-bold text-white uppercase tracking-wider">Астрономия</span>
-                </div>
-                <div onclick="openSubjectModal('Дене тарбия')" class="glass-card p-6 rounded-2xl cursor-pointer flex flex-col items-center justify-center text-center py-8">
-                    <div class="text-3xl text-green-400 mb-3"><i class="fas fa-running"></i></div>
-                    <span class="text-xs font-bold text-white uppercase tracking-wider">Дене тарбия</span>
-                </div>
-                <div onclick="openSubjectModal('Музыка')" class="glass-card p-6 rounded-2xl cursor-pointer flex flex-col items-center justify-center text-center py-8">
-                    <div class="text-3xl text-fuchsia-400 mb-3"><i class="fas fa-music"></i></div>
-                    <span class="text-xs font-bold text-white uppercase tracking-wider">Музыка</span>
-                </div>
-                <div onclick="openSubjectModal('Сүрөт искусствосу')" class="glass-card p-6 rounded-2xl cursor-pointer flex flex-col items-center justify-center text-center py-8">
-                    <div class="text-3xl text-violet-400 mb-3"><i class="fas fa-palette"></i></div>
-                    <span class="text-xs font-bold text-white uppercase tracking-wider">Сүрөт искусствосу</span>
-                </div>
-                <div onclick="openSubjectModal('Технология')" class="glass-card p-6 rounded-2xl cursor-pointer flex flex-col items-center justify-center text-center py-8">
-                    <div class="text-3xl text-stone-400 mb-3"><i class="fas fa-tools"></i></div>
-                    <span class="text-xs font-bold text-white uppercase tracking-wider">Технология</span>
-                </div>
-                <div onclick="openSubjectModal('Адам жана коом')" class="glass-card p-6 rounded-2xl cursor-pointer flex flex-col items-center justify-center text-center py-8">
-                    <div class="text-3xl text-emerald-500 mb-3"><i class="fas fa-users"></i></div>
-                    <span class="text-xs font-bold text-white uppercase tracking-wider">Адам жана коом</span>
-                </div>
-                <div onclick="openSubjectModal('Экономика')" class="glass-card p-6 rounded-2xl cursor-pointer flex flex-col items-center justify-center text-center py-8">
-                    <div class="text-3xl text-amber-400 mb-3"><i class="fas fa-wallet"></i></div>
-                    <span class="text-xs font-bold text-white uppercase tracking-wider">Экономика</span>
-                </div>
-                <div onclick="openSubjectModal('Экология')" class="glass-card p-6 rounded-2xl cursor-pointer flex flex-col items-center justify-center text-center py-8">
-                    <div class="text-3xl text-green-500 mb-3"><i class="fas fa-leaf"></i></div>
-                    <span class="text-xs font-bold text-white uppercase tracking-wider">Экология</span>
-                </div>
             </div>
         </section>
 
@@ -386,10 +381,11 @@
     </footer>
 
     <script>
+        // --- 1. Жаңылыктардын Слайдер Анимациясы ---
         const mainPageNews = [
             {
                 title: "BILIMAL.ORG платформасы ишке кирди! 🚀",
-                desc: "Кыргызстандагы мугалимдер жана ... окуучулар үчүн заманбап, коопсуз жана автоматташтырылган онлайн тест түзүүчү система толугу менен ачылды.",
+                desc: "Кыргызстандагы мугалимдер жана окуучулар үчүн заманбап, коопсуз жана автоматташтырылган онлайн тест түзүүчү система толугу менен ачылды.",
                 badge: "Долбоор",
                 badgeStyle: "bg-blue-500/10 text-blue-400 border-blue-500/20",
                 date: "16.05.2026"
@@ -421,33 +417,116 @@
 
             if (!page) return;
 
-            // Баракты жабуу анимациясы (Көлөмүн кичирейтип, бүдөмүктөө)
             page.classList.remove('opacity-100', 'scale-100');
             page.classList.add('opacity-0', 'scale-95', 'blur-sm');
 
             setTimeout(() => {
                 const data = mainPageNews[currentMainNewsIdx];
                 
-                // Жаңы маалыматты жүктөө
                 title.innerText = data.title;
                 desc.innerText = data.desc;
                 date.innerText = data.date;
                 badge.innerText = data.badge;
                 badge.className = `text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded border ${data.badgeStyle}`;
 
-                // Баракты кайра ачуу анимациясы
                 page.classList.remove('opacity-0', 'scale-95', 'blur-sm');
                 page.classList.add('opacity-100', 'scale-100');
 
-                // Кийинки индекске өтүү (Аягына жеткенде башына кайталанат)
                 currentMainNewsIdx = (currentMainNewsIdx + 1) % mainPageNews.length;
             }, 700);
         }
 
-        // Баракча толук жүктөлгөндө ишке киргизүү
+        // --- 2. КЫЗ КУУМАЙ ОЮНУНУН ДИНАМИКАЛЫК МОДАЛДЫК ТАНДОО СИСТЕМАСЫ ---
+        // Сиз каалаган предметтерди жана темаларды ушул базага кошо аласыз:
+        const kyzKuumayData = {
+            "Физика": [
+                { id: "phys-1", name: "Механика (Динамика жана Кинематика)", link: "games/kyz-kuumay.html?subject=physics&topic=mechanics" },
+                { id: "phys-2", name: "Термодинамика жана молекулалык физика", link: "games/kyz-kuumay.html?subject=physics&topic=thermo" },
+                { id: "phys-3", name: "Кванттык физика жана Оптика", link: "games/kyz-kuumay.html?subject=physics&topic=quantum" }
+            ],
+            "Математика": [
+                { id: "math-1", name: "Алгебра: Теңдемелер жана барабарсыздыктар", link: "games/kyz-kuumay.html?subject=math&topic=algebra" },
+                { id: "math-2", name: "Геометрия: Планиметрия негиздери", link: "games/kyz-kuumay.html?subject=math&topic=geometry" }
+            ],
+            "Кыргыз тили": [
+                { id: "kyr-1", name: "Фонетика жана Лексика", link: "games/kyz-kuumay.html?subject=kyrgyz&topic=phonetics" },
+                { id: "kyr-2", name: "Синтаксис жана Морфология", link: "games/kyz-kuumay.html?subject=kyrgyz&topic=syntax" }
+            ],
+            "Химия": [
+                { id: "chem-1", name: "Мезгилдик мыйзам жана Менделеевдин таблицасы", link: "games/kyz-kuumay.html?subject=chemistry&topic=periodic" },
+                { id: "chem-2", name: "Органикалык эмес химия негиздери", link: "games/kyz-kuumay.html?subject=chemistry&topic=inorganic" }
+            ],
+            "Тарых": [
+                { id: "hist-1", name: "Кыргызстан тарыхы: Байыркы замандан бүгүнкү күнгө чейин", link: "games/kyz-kuumay.html?subject=history&topic=kyrgyzstan" }
+            ]
+        };
+
+        // Тандоону баштоо (Предметтерди көрсөтүү)
+        function startKyzKuumaySelection() {
+            const modal = document.getElementById('dynamic-modal');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+
+            title.innerHTML = `<i class="fas fa-horse mr-2 text-amber-400"></i> Кыз Куумай: Предметти тандаңыз`;
+            
+            let htmlContent = `<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-2">`;
+            
+            // Базадан предметтерди алып чыгуу
+            for (let subject in kyzKuumayData) {
+                htmlContent += `
+                    <button onclick="showKyzKuumayTopics('${subject}')" class="w-full text-left bg-white/5 border border-white/10 hover:border-amber-500/50 hover:bg-amber-500/10 p-4 rounded-xl font-bold text-white transition-all flex items-center justify-between group">
+                        <span><i class="fas fa-book-open mr-3 text-amber-400/70 group-hover:text-amber-400"></i> ${subject}</span>
+                        <i class="fas fa-chevron-right text-xs text-gray-500 group-hover:text-amber-400"></i>
+                    </button>
+                `;
+            }
+            htmlContent += `</div>`;
+            
+            body.innerHTML = htmlContent;
+            modal.classList.remove('hidden');
+        }
+
+        // Тандалган предметтин темаларын көрсөтүү
+        function showKyzKuumayTopics(subject) {
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+
+            title.innerHTML = `<i class="fas fa-list mr-2 text-amber-400"></i> ${subject} — Теманы тандаңыз`;
+            
+            let htmlContent = `<div class="space-y-3 p-2">`;
+            const topics = kyzKuumayData[subject];
+
+            topics.forEach(topic => {
+                htmlContent += `
+                    <a href="${topic.link}" class="w-full text-left bg-gradient-to-r from-white/5 to-white/[0.02] border border-white/5 hover:border-orange-500/40 hover:from-orange-500/5 hover:to-transparent p-4 rounded-xl font-medium text-gray-200 hover:text-white transition-all flex items-center justify-between group block">
+                        <span class="flex items-center gap-3">
+                            <span class="w-2 h-2 rounded-full bg-orange-400 group-hover:animate-ping"></span>
+                            ${topic.name}
+                        </span>
+                        <span class="bg-orange-500/10 text-orange-400 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md group-hover:bg-orange-500 group-hover:text-black transition-all">Ойноо <i class="fas fa-gamepad ml-1"></i></span>
+                    </a>
+                `;
+            });
+
+            // Артка кайтуу баскычы
+            htmlContent += `
+                <button onclick="startKyzKuumaySelection()" class="mt-6 w-full text-center text-xs text-gray-500 hover:text-white transition-all py-2 border-t border-white/5 pt-4">
+                    <i class="fas fa-arrow-left mr-2"></i> Предметтердин тизмесине кайтуу
+                </button>
+            `;
+            htmlContent += `</div>`;
+
+            body.innerHTML = htmlContent;
+        }
+
+        // Модалды жабуу функциясы (Эгер script.js'де жок болсо)
+        function closeModal() {
+            document.getElementById('dynamic-modal').classList.add('hidden');
+        }
+
+        // Ишке киргизүү
         document.addEventListener("DOMContentLoaded", () => {
             animateMainNews();
-            // Ар бир 6 секунд сайын жаңылыктар чексиз кайталанып турат
             setInterval(animateMainNews, 6000);
         });
     </script>
