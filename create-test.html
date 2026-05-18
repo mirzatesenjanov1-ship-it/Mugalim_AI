@@ -120,11 +120,13 @@
             }
         }
 
+        // Суроо талаасын кошуу (Аралаштыруу баскычы кошулду)
         function addQuestionField(type = 'choice', text = "", options = ["", "", "", ""], correct = "") {
             questionCount++;
             const container = document.getElementById('questions-list');
+            
             let contentHtml = type === 'choice' ? `
-                <div class="space-y-2">
+                <div class="space-y-2 options-container">
                     <input type="text" value="${options[0]||''}" placeholder="Вариант А" class="q-opt w-full bg-white/5 border border-white/5 rounded-xl p-2 text-sm text-white">
                     <input type="text" value="${options[1]||''}" placeholder="Вариант Б" class="q-opt w-full bg-white/5 border border-white/5 rounded-xl p-2 text-sm text-white">
                     <input type="text" value="${options[2]||''}" placeholder="Вариант В" class="q-opt w-full bg-white/5 border border-white/5 rounded-xl p-2 text-sm text-white">
@@ -133,15 +135,78 @@
                 <input type="number" value="${correct}" placeholder="Туура варианттын индекси (0, 1, 2 же 3)" class="q-correct w-full bg-blue-500/10 border border-blue-500/20 rounded-xl p-2 text-xs text-blue-400 mt-3 focus:outline-none">` 
             : `<p class="text-xs text-gray-500 italic bg-white/5 p-3 rounded-xl border border-white/5">Окуучу өзү колдон жооп жазат.</p>`;
 
+            // Жоопторду аралаштыруучу баскыч Trash себеттин сол тарабына жайгаштырылды
+            let shuffleBtnHtml = type === 'choice' ? `
+                <button type="button" onclick="shuffleQuestionOptions(this)" class="text-xs text-amber-400 hover:text-amber-300 flex items-center gap-1 border border-amber-500/20 bg-amber-500/5 px-2.5 py-1 rounded-lg transition-all mr-2">
+                    <i class="fas fa-random"></i> Аралаштыруу
+                </button>` : '';
+
             container.insertAdjacentHTML('beforeend', `
                 <div class="p-6 bg-white/5 rounded-2xl border border-white/5 relative question-item" data-type="${type}">
                     <div class="flex justify-between items-center mb-3">
                         <p class="text-xs font-bold text-blue-400 uppercase">Суроо #${questionCount}</p>
-                        <button onclick="this.parentElement.parentElement.remove()" class="text-xs text-red-400"><i class="fas fa-trash"></i></button>
+                        <div class="flex items-center">
+                            ${shuffleBtnHtml}
+                            <button onclick="this.parentElement.parentElement.parentElement.remove(); reindexQuestions();" class="text-xs text-red-400 hover:text-red-300 p-1"><i class="fas fa-trash"></i></button>
+                        </div>
                     </div>
                     <input type="text" value="${text}" placeholder="Суроону жазыңыз..." class="q-text w-full bg-white/10 border border-white/5 rounded-xl p-3 text-white mb-3 focus:outline-none font-semibold">
                     ${contentHtml}
                 </div>`);
+        }
+
+        // ЖОПТОРДУ АРАЛАШТЫРУУЧУ ЖАҢЫ ЛОГИКАЛЫК ФУНКЦИЯ
+        function shuffleQuestionOptions(buttonElement) {
+            // Баскыч жайгашкан суроонун негизги блогун табабыз
+            const questionItem = buttonElement.closest('.question-item');
+            if (!questionItem) return;
+
+            // Учурдагы 4 варианттын киргизүү талааларын (input) алабыз
+            const optionInputs = questionItem.querySelectorAll('.q-opt');
+            const correctInput = questionItem.querySelector('.q-correct');
+            
+            // Варианттардын тексттерин массивге чогултуу
+            let currentOptions = Array.from(optionInputs).map(input => input.value);
+            let correctIndex = parseInt(correctInput.value);
+
+            // Эгер эч нерсе жазыла элек болсо, аралаштыруунун кажети жок
+            if (currentOptions.every(opt => opt.trim() === "")) {
+                alert("Аралаштыруу үчүн адегенде варианттарды толтуруңуз!");
+                return;
+            }
+
+            // Учурдагы туура деп белгиленген жооптун ТЕКСТИН эстеп калабыз
+            let correctText = (correctIndex >= 0 && correctIndex < currentOptions.length) ? currentOptions[correctIndex] : null;
+
+            // Fisher-Yates алгоритми менен кокустук тартипте орун алмаштыруу
+            for (let i = currentOptions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [currentOptions[i], currentOptions[j]] = [currentOptions[j], currentOptions[i]];
+            }
+
+            // Аралашкан жаңы тексттерди кайрадан input'торго жазып чыгабыз
+            optionInputs.forEach((input, index) => {
+                input.value = currentOptions[index];
+            });
+
+            // Эгер мурун туура жооп тандалган болсо, анын жаңы ИНДЕКСИН таап ордуна коёбуз
+            if (correctText !== null && correctText.trim() !== "") {
+                let newCorrectIndex = currentOptions.indexOf(correctText);
+                correctInput.value = newCorrectIndex !== -1 ? newCorrectIndex : "";
+            } else {
+                correctInput.value = ""; // Эгер туура жооп жок болсо же бош болсо тазалайт
+            }
+        }
+
+        // Суроо өчүрүлгөндө катар номерлерин (#1, #2) автоматтык түрдө кайра иретке келтирүү
+        function reindexQuestions() {
+            const items = document.querySelectorAll('.question-item');
+            questionCount = 0;
+            items.forEach(item => {
+                questionCount++;
+                const p = item.querySelector('.flex justify-between items-center p');
+                if (p) p.innerText = `Суроо #${questionCount}`;
+            });
         }
 
         function loadExistingQuizData() {
@@ -158,6 +223,7 @@
                     }
                     if(quiz.questions) {
                         document.getElementById('questions-list').innerHTML = "";
+                        questionCount = 0; // Ирек номурду нөлдөп туруп кайра жүктөйбүз
                         quiz.questions.forEach(q => addQuestionField(q.type || 'choice', q.questionText, q.options || [], q.correctAnswer !== undefined ? q.correctAnswer : ""));
                     }
                 }
